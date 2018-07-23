@@ -7,7 +7,7 @@
     	useGeneratedKeys="true" keyProperty="id">
         insert into product_ (name,price) values(#{name},#{price})
     </insert>
-    <delete id="deleteProduct">
+     <delete id="deleteProduct">
         delete from product_ where id=#{id}
     </delete>
     <update id="updateProduct" parameterType="com.just.pojo.Product">

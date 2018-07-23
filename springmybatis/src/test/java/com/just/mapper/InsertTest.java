@@ -3,12 +3,13 @@ package com.just.mapper;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.sql.SQLException;
 import java.util.UUID;
 
 
 public class InsertTest {
 
-	public static void main(String[] args) throws Exception {
+	public static void main(String[] args) {
 		/*Connection conn=DriverManager.getConnection("jdbc:mysql://localhost:3306/demo", "root", "zard");
 		String sql = "insert into product_(name,price) values(?,?)";
 		conn.setAutoCommit(false);
@@ -35,9 +36,15 @@ public class InsertTest {
 			e.printStackTrace();
 		}
  
-		java.sql.Connection conn = java.sql.DriverManager.getConnection("jdbc:mysql://localhost/demo", "root", "zard");
+		java.sql.Connection conn = null ;
+		java.sql.Statement stmt = null ;
+		try {
+			conn = java.sql.DriverManager.getConnection("jdbc:mysql://localhost/demo", "root", "zard");
+			 stmt = conn.createStatement();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
  
-		java.sql.Statement stmt = conn.createStatement();
  
 		int total = 100000;
 		System.out.println("====start=====");
@@ -56,11 +63,21 @@ public class InsertTest {
 				}
 			}
 			System.out.println("第" + n + "次插入10万条数据！");
-			stmt.executeUpdate(sBuffer.toString());
+			try {
+				stmt.executeUpdate(sBuffer.toString());
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}		
 		long end = System.currentTimeMillis();
 		System.out.println("run time:" + (end - start));
-		stmt.close();
-		conn.close();
+		try {
+			stmt.close();
+			conn.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 }
