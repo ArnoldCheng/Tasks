@@ -47,5 +47,4 @@ public class TemplateDAOImpl implements TemplateDAO  {
 		}
 		return null ;
 	}
-
 }

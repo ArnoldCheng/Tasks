@@ -1,5 +1,9 @@
 *.DS_Store
 
+.metadata
+.recommenders
+RemoteSystemsTempFiles
+Servers
 */.settings
 */bin
 */target
@@ -10,3 +14,5 @@
 
 .idea
 *.iml
+/.metadata/
+/.recommenders/

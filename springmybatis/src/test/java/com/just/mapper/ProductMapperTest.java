@@ -46,10 +46,10 @@ public class ProductMapperTest {
     }
     @Test
     public void updateProductTest() {
-        Product product = mapper.getProduct(5);
+        Product product = mapper.getProduct(1);
         //product.setName("zero");
         product.setPrice(51);
         mapper.updateProduct(product);
-        System.out.println(mapper.getProduct(5));
+        System.out.println(mapper.getProduct(1));
     }
 }

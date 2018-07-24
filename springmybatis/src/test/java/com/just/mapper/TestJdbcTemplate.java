@@ -21,7 +21,7 @@ public class TestJdbcTemplate {
 
 	@Test
 	public void updateProductTest() {
-		Product product = new TemplateDAOImpl().getProduct(6);
+		Product product = new TemplateDAOImpl().getProduct(1);
 		product.setName("无名氏");
 		System.out.println(product);
 		int num = new TemplateDAOImpl().updateProduct(product);
