@@ -1,29 +1,30 @@
 package com.just.demo.dto;
 /**
- * ·â×°json¶ÔÏó£¬ËùÓĞ·µ»Ø½á¹û¶¼Ê¹ÓÃËü
+ * å°è£…jsonå¯¹è±¡ï¼Œæ‰€æœ‰è¿”å›ç»“æœéƒ½ä½¿ç”¨å®ƒ
  */
 public class Result<T> {
 
-	private boolean success;// ÊÇ·ñ³É¹¦±êÖ¾
+    private boolean success;// æ˜¯å¦æˆåŠŸæ ‡å¿—
 
-	private T data;// ³É¹¦Ê±·µ»ØµÄÊı¾İ
+    private T data;// æˆåŠŸæ—¶è¿”å›çš„æ•°æ®
 
-	private String error;// ´íÎóĞÅÏ¢
+    private String error;// é”™è¯¯ä¿¡æ¯
 
-	public Result() {
-	}
+    public Result() {
+    }
 
-	// ³É¹¦Ê±µÄ¹¹ÔìÆ÷
-	public Result(boolean success, T data) {
-		this.success = success;
-		this.data = data;
-	}
+    // æˆåŠŸæ—¶çš„æ„é€ å™¨
+    public Result(boolean success, T data) {
+        this.success = success;
+        this.data = data;
+    }
 
-	// ´íÎóÊ±µÄ¹¹ÔìÆ÷
-	public Result(boolean success, String error) {
-		this.success = success;
-		this.error = error;
-	}
+    // é”™è¯¯æ—¶çš„æ„é€ å™¨
+    public Result(boolean success, String error) {
+        this.success = success;
+        this.error = error;
+    }
+
 
 	public boolean isSuccess() {
 		return success;

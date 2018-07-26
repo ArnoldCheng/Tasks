@@ -5,11 +5,11 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 /**
- * 配置spring和junit整合，junit启动时加载springIOC容器 spring-test,junit
+ * 閰嶇疆spring鍜宩unit鏁村悎锛宩unit鍚姩鏃跺姞杞絪pringIOC瀹瑰櫒 spring-test,junit
  */
 @RunWith(SpringJUnit4ClassRunner.class)
-// 告诉junit spring配置文件
-@ContextConfiguration({ "classpath:spring/applicationContext-dao.xml", "classpath:spring/applicationContext-service.xml"})
+// 鍛婅瘔junit spring閰嶇疆鏂囦欢
+@ContextConfiguration({ "classpath:spring/spring-dao.xml", "classpath:spring/spring-service.xml" })
 public class BaseTest {
 
 }

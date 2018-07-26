@@ -24,7 +24,7 @@ import org.springframework.transaction.annotation.Transactional;
  * @author Kemin
  */
 @RunWith(SpringJUnit4ClassRunner.class)
-// ÅäÖÃÊÂÎñµÄ»Ø¹ö,¶ÔÊı¾İ¿âµÄÔöÉ¾¸Ä¶¼»á»Ø¹ö,±ãÓÚ²âÊÔÓÃÀıµÄÑ­»·ÀûÓÃ
+// é…ç½®äº‹åŠ¡çš„å›æ»š,å¯¹æ•°æ®åº“çš„å¢åˆ æ”¹éƒ½ä¼šå›æ»š,ä¾¿äºæµ‹è¯•ç”¨ä¾‹çš„å¾ªç¯åˆ©ç”¨
 @TransactionConfiguration(transactionManager = "transactionManager", defaultRollback = true)
 @Transactional
 public class BookControllerTest extends AbstractContextControllerTests {

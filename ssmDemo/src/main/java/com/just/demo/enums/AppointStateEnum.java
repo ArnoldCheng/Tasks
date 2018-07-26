@@ -1,10 +1,10 @@
 package com.just.demo.enums;
 /**
- * 使用枚举表述常量数据字典
+ * 浣跨敤鏋氫妇琛ㄨ堪甯搁噺鏁版嵁瀛楀吀
  */
 public enum AppointStateEnum {
 
-    SUCCESS(1, "预约成功"), NO_NUMBER(0, "库存不足"), REPEAT_APPOINT(-1, "重复预约"), INNER_ERROR(-2, "系统异常");
+    SUCCESS(1, "棰勭害鎴愬姛"), NO_NUMBER(0, "搴撳瓨涓嶈冻"), REPEAT_APPOINT(-1, "閲嶅棰勭害"), INNER_ERROR(-2, "绯荤粺寮傚父");
 
     private int state;
 

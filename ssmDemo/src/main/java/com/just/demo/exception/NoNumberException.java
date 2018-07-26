@@ -1,6 +1,6 @@
 package com.just.demo.exception;
 /**
- * ¿â´æ²»×ãÒì³£
+ * åº“å­˜ä¸è¶³å¼‚å¸¸
  */
 public class NoNumberException extends RuntimeException {
 

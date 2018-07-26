@@ -1,6 +1,6 @@
 package com.just.demo.exception;
 /**
- * 预约业务异常
+ * 棰勭害涓氬姟寮傚父
  */
 public class AppointException extends RuntimeException {
 

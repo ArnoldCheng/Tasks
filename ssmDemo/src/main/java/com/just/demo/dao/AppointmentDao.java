@@ -7,21 +7,21 @@ import com.just.demo.entity.Appointment;
 public interface AppointmentDao {
 
 	/**
-	 * ²åÈëÔ¤Ô¼Í¼Êé¼ÇÂ¼
-	 * 
-	 * @param bookId
-	 * @param studentId
-	 * @return ²åÈëµÄĞĞÊı
-	 */
-	int insertAppointment(@Param("bookId") long bookId, @Param("studentId") long studentId);
+     * æ’å…¥é¢„çº¦å›¾ä¹¦è®°å½•
+     * 
+     * @param bookId
+     * @param studentId
+     * @return æ’å…¥çš„è¡Œæ•°
+     */
+    int insertAppointment(@Param("bookId") long bookId, @Param("studentId") long studentId);
 
-	/**
-	 * Í¨¹ıÖ÷¼ü²éÑ¯Ô¤Ô¼Í¼Êé¼ÇÂ¼£¬²¢ÇÒĞ¯´øÍ¼ÊéÊµÌå
-	 * 
-	 * @param bookId
-	 * @param studentId
-	 * @return
-	 */
-	Appointment queryByKeyWithBook(@Param("bookId") long bookId, @Param("studentId") long studentId);
+    /**
+     * é€šè¿‡ä¸»é”®æŸ¥è¯¢é¢„çº¦å›¾ä¹¦è®°å½•ï¼Œå¹¶ä¸”æºå¸¦å›¾ä¹¦å®ä½“
+     * 
+     * @param bookId
+     * @param studentId
+     * @return
+     */
+    Appointment queryByKeyWithBook(@Param("bookId") long bookId, @Param("studentId") long studentId);
 
 }

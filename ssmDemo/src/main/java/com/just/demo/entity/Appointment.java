@@ -3,18 +3,18 @@ package com.just.demo.entity;
 import java.util.Date;
 
 /**
- * Ô¤Ô¼Í¼ÊéÊµÌå
+ * é¢„çº¦å›¾ä¹¦å®ä½“
  */
 public class Appointment {
 
-	private long bookId;// Í¼ÊéID
+    private long bookId;// å›¾ä¹¦ID
 
-	private long studentId;// Ñ§ºÅ
+    private long studentId;// å­¦å·
 
-	private Date appointTime;// Ô¤Ô¼Ê±¼ä
+    private Date appointTime;// é¢„çº¦æ—¶é—´
 
-	// ¶à¶ÔÒ»µÄ¸´ºÏÊôĞÔ
-	private Book book;// Í¼ÊéÊµÌå
+    // å¤šå¯¹ä¸€çš„å¤åˆå±æ€§
+    private Book book;// å›¾ä¹¦å®ä½“
 
 	public Appointment() {
 	}

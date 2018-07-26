@@ -9,28 +9,28 @@ import com.just.demo.entity.Book;
 public interface BookDao {
 
 	/**
-	 * Í¨¹ıID²éÑ¯µ¥±¾Í¼Êé
-	 * 
-	 * @param id
-	 * @return
-	 */
-	Book queryById(long id);
+     * é€šè¿‡IDæŸ¥è¯¢å•æœ¬å›¾ä¹¦
+     * 
+     * @param id
+     * @return
+     */
+    Book queryById(long id);
 
-	/**
-	 * ²éÑ¯ËùÓĞÍ¼Êé
-	 * 
-	 * @param offset ²éÑ¯ÆğÊ¼Î»ÖÃ
-	 * @param limit ²éÑ¯ÌõÊı
-	 * @return
-	 */
-	List<Book> queryAll(@Param("offset") int offset, @Param("limit") int limit);
+    /**
+     * æŸ¥è¯¢æ‰€æœ‰å›¾ä¹¦
+     * 
+     * @param offset æŸ¥è¯¢èµ·å§‹ä½ç½®
+     * @param limit æŸ¥è¯¢æ¡æ•°
+     * @return
+     */
+    List<Book> queryAll(@Param("offset") int offset, @Param("limit") int limit);
 
-	/**
-	 * ¼õÉÙ¹İ²ØÊıÁ¿
-	 * 
-	 * @param bookId
-	 * @return Èç¹ûÓ°ÏìĞĞÊıµÈÓÚ>1£¬±íÊ¾¸üĞÂµÄ¼ÇÂ¼ĞĞÊı
-	 */
-	int reduceNumber(long bookId);
+    /**
+     * å‡å°‘é¦†è—æ•°é‡
+     * 
+     * @param bookId
+     * @return å¦‚æœå½±å“è¡Œæ•°ç­‰äº>1ï¼Œè¡¨ç¤ºæ›´æ–°çš„è®°å½•è¡Œæ•°
+     */
+    int reduceNumber(long bookId);
 
 }

@@ -4,39 +4,40 @@ import com.just.demo.entity.Appointment;
 import com.just.demo.enums.AppointStateEnum;
 
 /**
- * ��װԤԼִ�к���
+ * 封装预约执行后结果
  */
 public class AppointExecution {
 
-	// ͼ��ID
-	private long bookId;
+    // 图书ID
+    private long bookId;
 
-	// ��ɱԤԼ���״̬
-	private int state;
+    // 秒杀预约结果状态
+    private int state;
 
-	// ״̬��ʶ
-	private String stateInfo;
+    // 状态标识
+    private String stateInfo;
 
-	// ԤԼ�ɹ�����
-	private Appointment appointment;
+    // 预约成功对象
+    private Appointment appointment;
 
-	public AppointExecution() {
-	}
+    public AppointExecution() {
+    }
 
-	// ԤԼʧ�ܵĹ�����
-	public AppointExecution(long bookId, AppointStateEnum stateEnum) {
-		this.bookId = bookId;
-		this.state = stateEnum.getState();
-		this.stateInfo = stateEnum.getStateInfo();
-	}
+    // 预约失败的构造器
+    public AppointExecution(long bookId, AppointStateEnum stateEnum) {
+        this.bookId = bookId;
+        this.state = stateEnum.getState();
+        this.stateInfo = stateEnum.getStateInfo();
+    }
 
-	// ԤԼ�ɹ��Ĺ�����
-	public AppointExecution(long bookId, AppointStateEnum stateEnum, Appointment appointment) {
-		this.bookId = bookId;
-		this.state = stateEnum.getState();
-		this.stateInfo = stateEnum.getStateInfo();
-		this.appointment = appointment;
-	}
+    // 预约成功的构造器
+    public AppointExecution(long bookId, AppointStateEnum stateEnum, Appointment appointment) {
+        this.bookId = bookId;
+        this.state = stateEnum.getState();
+        this.stateInfo = stateEnum.getStateInfo();
+        this.appointment = appointment;
+    }
+
 
 	public long getBookId() {
 		return bookId;

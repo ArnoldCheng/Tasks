@@ -1,6 +1,6 @@
 package com.just.demo.exception;
 /**
- * �ظ�ԤԼ�쳣
+ * 重复预约异常
  */
 public class RepeatAppointException extends RuntimeException {
 

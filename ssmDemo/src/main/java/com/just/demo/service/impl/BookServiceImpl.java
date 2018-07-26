@@ -22,62 +22,58 @@ import com.just.demo.service.BookService;
 @Service
 public class BookServiceImpl implements BookService {
 
-    private Logger logger = LoggerFactory.getLogger(this.getClass());
+	private Logger logger = LoggerFactory.getLogger(this.getClass());
 
-    // ×¢ÈëServiceÒÀÀµ
-    @Autowired
-    private BookDao bookDao;
+	// æ³¨å…¥Serviceä¾èµ–
+	@Autowired
+	private BookDao bookDao;
 
-    @Autowired
-    private AppointmentDao appointmentDao;
+	@Autowired
+	private AppointmentDao appointmentDao;
 
 
-    @Override
-    public Book getById(long bookId) {
-        return bookDao.queryById(bookId);
-    }
+	@Override
+	public Book getById(long bookId) {
+		return bookDao.queryById(bookId);
+	}
 
-    @Override
-    public List<Book> getList() {
-        return bookDao.queryAll(0, 1000);
-    }
+	@Override
+	public List<Book> getList() {
+		return bookDao.queryAll(0, 1000);
+	}
 
-    @Override
-    @Transactional
-    /**
-     * Ê¹ÓÃ×¢½â¿ØÖÆÊÂÎñ·½·¨µÄÓÅµã£º 1.¿ª·¢ÍÅ¶Ó´ï³ÉÒ»ÖÂÔ¼¶¨£¬Ã÷È·±ê×¢ÊÂÎñ·½·¨µÄ±à³Ì·ç¸ñ
-     * 2.±£Ö¤ÊÂÎñ·½·¨µÄÖ´ĞĞÊ±¼ä¾¡¿ÉÄÜ¶Ì£¬²»Òª´©²åÆäËûÍøÂç²Ù×÷£¬RPC/HTTPÇëÇó»òÕß°şÀëµ½ÊÂÎñ·½·¨Íâ²¿
-     * 3.²»ÊÇËùÓĞµÄ·½·¨¶¼ĞèÒªÊÂÎñ£¬ÈçÖ»ÓĞÒ»ÌõĞŞ¸Ä²Ù×÷£¬Ö»¶Á²Ù×÷²»ĞèÒªÊÂÎñ¿ØÖÆ
-     */
-    public AppointExecution appoint(long bookId, long studentId) {
-        try {
-            // ¼õ¿â´æ
-            int update = bookDao.reduceNumber(bookId);
-            if (update <= 0) {// ¿â´æ²»×ã
-                //return new AppointExecution(bookId, AppointStateEnum.NO_NUMBER);//´íÎóĞ´·¨                
-                throw new NoNumberException("no number");
-            } else {
-                // Ö´ĞĞÔ¤Ô¼²Ù×÷
-                int insert = appointmentDao.insertAppointment(bookId, studentId);
-                if (insert <= 0) {// ÖØ¸´Ô¤Ô¼
-                    //return new AppointExecution(bookId, AppointStateEnum.REPEAT_APPOINT);//´íÎóĞ´·¨
-                    throw new RepeatAppointException("repeat appoint");
-                } else {// Ô¤Ô¼³É¹¦
-                    Appointment appointment = appointmentDao.queryByKeyWithBook(bookId, studentId);
-                    return new AppointExecution(bookId, AppointStateEnum.SUCCESS, appointment);
-                }
-            }
-        // ÒªÏÈÓÚcatch ExceptionÒì³£Ç°ÏÈcatch×¡ÔÙÅ×³ö£¬²»È»×Ô¶¨ÒåµÄÒì³£Ò²»á±»×ª»»ÎªAppointException£¬µ¼ÖÂ¿ØÖÆ²ãÎŞ·¨¾ßÌåÊ¶±ğÊÇÄÄ¸öÒì³£
-        } catch (NoNumberException e1) {
-            throw e1;
-        } catch (RepeatAppointException e2) {
-            throw e2;
-        } catch (Exception e) {
-            logger.error(e.getMessage(), e);
-            // ËùÓĞ±àÒëÆÚÒì³£×ª»»ÎªÔËĞĞÆÚÒì³£
-            //return new AppointExecution(bookId, AppointStateEnum.INNER_ERROR);//´íÎóĞ´·¨
-            throw new AppointException("appoint inner error:" + e.getMessage());
-        }
-    }
+	@Override
+	@Transactional
+	/**
+	 * ä½¿ç”¨æ³¨è§£æ§åˆ¶äº‹åŠ¡æ–¹æ³•çš„ä¼˜ç‚¹ï¼š 1.å¼€å‘å›¢é˜Ÿè¾¾æˆä¸€è‡´çº¦å®šï¼Œæ˜ç¡®æ ‡æ³¨äº‹åŠ¡æ–¹æ³•çš„ç¼–ç¨‹é£æ ¼
+	 * 2.ä¿è¯äº‹åŠ¡æ–¹æ³•çš„æ‰§è¡Œæ—¶é—´å°½å¯èƒ½çŸ­ï¼Œä¸è¦ç©¿æ’å…¶ä»–ç½‘ç»œæ“ä½œï¼ŒRPC/HTTPè¯·æ±‚æˆ–è€…å‰¥ç¦»åˆ°äº‹åŠ¡æ–¹æ³•å¤–éƒ¨
+	 * 3.ä¸æ˜¯æ‰€æœ‰çš„æ–¹æ³•éƒ½éœ€è¦äº‹åŠ¡ï¼Œå¦‚åªæœ‰ä¸€æ¡ä¿®æ”¹æ“ä½œï¼Œåªè¯»æ“ä½œä¸éœ€è¦äº‹åŠ¡æ§åˆ¶
+	 */
+	public AppointExecution appoint(long bookId, long studentId) {
+		try {
+			// å‡åº“å­˜
+			int update = bookDao.reduceNumber(bookId);
+			if (update <= 0) {// åº“å­˜ä¸è¶³
+				throw new NoNumberException("no number");
+			} else {
+				// æ‰§è¡Œé¢„çº¦æ“ä½œ
+				int insert = appointmentDao.insertAppointment(bookId, studentId);
+				if (insert <= 0) {// é‡å¤é¢„çº¦
+					throw new RepeatAppointException("repeat appoint");
+				} else {// é¢„çº¦æˆåŠŸ
+					Appointment appointment = appointmentDao.queryByKeyWithBook(bookId, studentId);
+					return new AppointExecution(bookId, AppointStateEnum.SUCCESS, appointment);
+				}
+			}
+		} catch (NoNumberException e1) {
+			throw e1;
+		} catch (RepeatAppointException e2) {
+			throw e2;
+		} catch (Exception e) {
+			logger.error(e.getMessage(), e);
+			// æ‰€æœ‰ç¼–è¯‘æœŸå¼‚å¸¸è½¬æ¢ä¸ºè¿è¡ŒæœŸå¼‚å¸¸
+			throw new AppointException("appoint inner error:" + e.getMessage());
+		}
+	}
 
 }

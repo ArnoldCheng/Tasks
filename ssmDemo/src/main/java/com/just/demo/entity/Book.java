@@ -1,15 +1,15 @@
 package com.just.demo.entity;
 /**
- * 图书实体
+ * 鍥句功瀹炰綋
  */
 public class Book {
 
-	private long bookId;// 图书ID
+	private long bookId;// 鍥句功ID
 
-	private String name;// 图书名称
+    private String name;// 鍥句功鍚嶇О
 
-	private int number;// 馆藏数量
-
+    private int number;// 棣嗚棌鏁伴噺
+    
 	public Book() {
 	}
 
