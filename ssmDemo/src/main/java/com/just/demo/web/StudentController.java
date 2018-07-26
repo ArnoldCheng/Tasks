@@ -14,20 +14,15 @@ import com.just.demo.entity.Student;
 import com.just.demo.service.StudentService;
 
 @Controller
+@RequestMapping("/student")
 public class StudentController {
 
 	private Logger logger = LoggerFactory.getLogger(this.getClass());
 	
 	@Autowired
 	private StudentService studentService ;
-	
-	@RequestMapping("/")
-	public String showIndex() {
-		logger.info("list方法！！！！！！！！！！！！！");
-		return "index";
-	}
-	
-	@RequestMapping(value="/student/list", method=RequestMethod.GET)
+		
+	@RequestMapping(value="/list", method=RequestMethod.GET)
 	public String list(Model model) {
 		logger.info("list方法！！！！！！！！！！！！！");
 		List<Student> students = studentService.list();

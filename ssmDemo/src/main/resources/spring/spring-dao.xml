@@ -10,7 +10,7 @@
 
 	<!-- 配置整合mybatis过程 -->
 	<!-- 1.加载配置文件:数据库相关参数 -->
-	<context:property-placeholder location="classpath:resource/db.properties" />
+	<context:property-placeholder location="classpath:db.properties" />
 	<!-- 2.数据库连接池 -->
 	<bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource"
 		destroy-method="close"><!-- destroy方法设置为关闭，即不销毁 -->
@@ -25,7 +25,7 @@
 	<!-- 3.配置sqlsessionFactory对象 -->
 	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
 	<!-- 配置MyBaties全局配置文件:mybatis/SqlMapConfig.xml -->
-		<property name="configLocation" value="classpath:mybatis/SqlMapConfig.xml"></property>
+		<property name="configLocation" value="classpath:SqlMapConfig.xml"></property>
 		<!-- 注入数据库连接池 -->
 		<property name="dataSource" ref="dataSource"></property>
 		<!-- 扫描entity包 使用别名 -->
@@ -36,7 +36,7 @@
 	<!-- 4.配置扫描Dao接口包，动态实现Dao接口，注入到spring容器中 -->
     <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
         <!-- 注入sqlSessionFactory -->
-        <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory" />
+        <!-- <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory" /> -->
         <!-- 给出需要扫描Dao接口包 -->
         <property name="basePackage" value="com.just.demo.dao" />
     </bean>
