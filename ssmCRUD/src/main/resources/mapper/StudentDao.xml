@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.just.mapper.StudentDao">
+	<!--<resultMap id="BaseResultMap" type="com.just.pojo.Student" >
+		<id column="id" property="id" jdbcType="BIGINT" />
+		<result column="name" property="name" jdbcType="VARCHAR" />
+		<result column="qq" property="qq" jdbcType="VARCHAR" />
+		<result column="types" property="types" jdbcType="VARCHAR" />
+		<result column="start_date" property="startDate" jdbcType="DATE" />
+		<result column="school" property="school" jdbcType="VARCHAR" />
+		<result column="student_id" property="studentId" jdbcType="VARCHAR" />
+		<result column="daily_link" property="dailyLink" jdbcType="VARCHAR" />
+		<result column="wish" property="wish" jdbcType="VARCHAR" />
+		<result column="coach" property="coach" jdbcType="VARCHAR" />
+		<result column="know_from" property="knowFrom" jdbcType="VARCHAR" />
+		<result column="create_at" property="createAt" jdbcType="DATE" />
+		<result column="update_at" property="updateAt" jdbcType="DATE" />
+	</resultMap>-->
+<select id="listBySplitPage" resultType="Student" parameterType="int">
+	select * from student order by id
+	<if test="pageNum!=null and size!=null">
+                    limit #{},#{count}
+    </if>	
+</select>
+<select id="count" resultType="java.lang.Integer">
+	select count(*) from student 
+</select>
+	<insert id="insert" parameterType="Student" >
+    insert into student ( name, qq,
+      types, start_date, school,
+      student_id, daily_link, wish,
+      coach, know_from, create_at,
+      update_at)
+    values ( #{name,jdbcType=VARCHAR}, #{qq,jdbcType=VARCHAR},
+      #{types,jdbcType=VARCHAR}, #{startDate,jdbcType=DATE}, #{school,jdbcType=VARCHAR},
+      #{studentId,jdbcType=VARCHAR}, #{dailyLink,jdbcType=VARCHAR}, #{wish,jdbcType=VARCHAR},
+      #{coach,jdbcType=VARCHAR}, #{knowFrom,jdbcType=VARCHAR}, #{createAt,jdbcType=DATE},
+      #{updateAt,jdbcType=DATE})
+  </insert>
+	<select id="total" resultType="java.lang.Integer">
+	select count(*) from student
+</select>
+	<delete id="delete" parameterType="java.lang.Long" >
+		delete from student where id = #{id}
+	</delete>
+	<update id="update" parameterType="Student" >
+		update student set name=#{name},qq=#{qq},types=#{types},start_date=#{startDate},school=#{school},student_id=#{studentId},
+			daily_link=#{dailyLink},wish=#{wish},coach=#{coach},know_from=#{knowFrom} where id=#{id}
+	</update>
+	<select id="findById" parameterType="java.lang.Long" resultType="Student">
+		select * from student where id = #{id}
+	</select>
+</mapper>
