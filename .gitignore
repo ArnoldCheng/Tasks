@@ -11,6 +11,7 @@ Servers
 */.project
 */.settings
 */src/main/webapp/META-INF
+*/*.iml
 
 .idea
 *.iml
