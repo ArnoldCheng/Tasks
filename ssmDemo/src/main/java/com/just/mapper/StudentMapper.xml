@@ -1,0 +1,353 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.just.mapper.StudentMapper">
+  <resultMap id="BaseResultMap" type="com.just.pojo.Student">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="qq" jdbcType="VARCHAR" property="qq" />
+    <result column="types" jdbcType="VARCHAR" property="types" />
+    <result column="start_date" jdbcType="BIGINT" property="startDate" />
+    <result column="school" jdbcType="VARCHAR" property="school" />
+    <result column="student_id" jdbcType="VARCHAR" property="studentId" />
+    <result column="daily_link" jdbcType="VARCHAR" property="dailyLink" />
+    <result column="wish" jdbcType="VARCHAR" property="wish" />
+    <result column="coach" jdbcType="VARCHAR" property="coach" />
+    <result column="know_from" jdbcType="VARCHAR" property="knowFrom" />
+    <result column="is_complete" jdbcType="TINYINT" property="isComplete" />
+    <result column="create_at" jdbcType="BIGINT" property="createAt" />
+    <result column="update_at" jdbcType="BIGINT" property="updateAt" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    id, name, qq, types, start_date, school, student_id, daily_link, wish, coach, know_from, 
+    is_complete, create_at, update_at
+  </sql>
+  <select id="selectByExample" parameterType="com.just.pojo.StudentExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from student
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from student
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from student
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.just.pojo.StudentExample">
+    delete from student
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.just.pojo.Student">
+    insert into student (id, name, qq, 
+      types, start_date, school, 
+      student_id, daily_link, wish, 
+      coach, know_from, is_complete, 
+      create_at, update_at)
+    values (#{id,jdbcType=BIGINT}, #{name,jdbcType=VARCHAR}, #{qq,jdbcType=VARCHAR}, 
+      #{types,jdbcType=VARCHAR}, #{startDate,jdbcType=BIGINT}, #{school,jdbcType=VARCHAR}, 
+      #{studentId,jdbcType=VARCHAR}, #{dailyLink,jdbcType=VARCHAR}, #{wish,jdbcType=VARCHAR}, 
+      #{coach,jdbcType=VARCHAR}, #{knowFrom,jdbcType=VARCHAR}, #{isComplete,jdbcType=TINYINT}, 
+      #{createAt,jdbcType=BIGINT}, #{updateAt,jdbcType=BIGINT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.just.pojo.Student">
+    insert into student
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="name != null">
+        name,
+      </if>
+      <if test="qq != null">
+        qq,
+      </if>
+      <if test="types != null">
+        types,
+      </if>
+      <if test="startDate != null">
+        start_date,
+      </if>
+      <if test="school != null">
+        school,
+      </if>
+      <if test="studentId != null">
+        student_id,
+      </if>
+      <if test="dailyLink != null">
+        daily_link,
+      </if>
+      <if test="wish != null">
+        wish,
+      </if>
+      <if test="coach != null">
+        coach,
+      </if>
+      <if test="knowFrom != null">
+        know_from,
+      </if>
+      <if test="isComplete != null">
+        is_complete,
+      </if>
+      <if test="createAt != null">
+        create_at,
+      </if>
+      <if test="updateAt != null">
+        update_at,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="qq != null">
+        #{qq,jdbcType=VARCHAR},
+      </if>
+      <if test="types != null">
+        #{types,jdbcType=VARCHAR},
+      </if>
+      <if test="startDate != null">
+        #{startDate,jdbcType=BIGINT},
+      </if>
+      <if test="school != null">
+        #{school,jdbcType=VARCHAR},
+      </if>
+      <if test="studentId != null">
+        #{studentId,jdbcType=VARCHAR},
+      </if>
+      <if test="dailyLink != null">
+        #{dailyLink,jdbcType=VARCHAR},
+      </if>
+      <if test="wish != null">
+        #{wish,jdbcType=VARCHAR},
+      </if>
+      <if test="coach != null">
+        #{coach,jdbcType=VARCHAR},
+      </if>
+      <if test="knowFrom != null">
+        #{knowFrom,jdbcType=VARCHAR},
+      </if>
+      <if test="isComplete != null">
+        #{isComplete,jdbcType=TINYINT},
+      </if>
+      <if test="createAt != null">
+        #{createAt,jdbcType=BIGINT},
+      </if>
+      <if test="updateAt != null">
+        #{updateAt,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.just.pojo.StudentExample" resultType="java.lang.Integer">
+    select count(*) from student
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update student
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=BIGINT},
+      </if>
+      <if test="record.name != null">
+        name = #{record.name,jdbcType=VARCHAR},
+      </if>
+      <if test="record.qq != null">
+        qq = #{record.qq,jdbcType=VARCHAR},
+      </if>
+      <if test="record.types != null">
+        types = #{record.types,jdbcType=VARCHAR},
+      </if>
+      <if test="record.startDate != null">
+        start_date = #{record.startDate,jdbcType=BIGINT},
+      </if>
+      <if test="record.school != null">
+        school = #{record.school,jdbcType=VARCHAR},
+      </if>
+      <if test="record.studentId != null">
+        student_id = #{record.studentId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.dailyLink != null">
+        daily_link = #{record.dailyLink,jdbcType=VARCHAR},
+      </if>
+      <if test="record.wish != null">
+        wish = #{record.wish,jdbcType=VARCHAR},
+      </if>
+      <if test="record.coach != null">
+        coach = #{record.coach,jdbcType=VARCHAR},
+      </if>
+      <if test="record.knowFrom != null">
+        know_from = #{record.knowFrom,jdbcType=VARCHAR},
+      </if>
+      <if test="record.isComplete != null">
+        is_complete = #{record.isComplete,jdbcType=TINYINT},
+      </if>
+      <if test="record.createAt != null">
+        create_at = #{record.createAt,jdbcType=BIGINT},
+      </if>
+      <if test="record.updateAt != null">
+        update_at = #{record.updateAt,jdbcType=BIGINT},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update student
+    set id = #{record.id,jdbcType=BIGINT},
+      name = #{record.name,jdbcType=VARCHAR},
+      qq = #{record.qq,jdbcType=VARCHAR},
+      types = #{record.types,jdbcType=VARCHAR},
+      start_date = #{record.startDate,jdbcType=BIGINT},
+      school = #{record.school,jdbcType=VARCHAR},
+      student_id = #{record.studentId,jdbcType=VARCHAR},
+      daily_link = #{record.dailyLink,jdbcType=VARCHAR},
+      wish = #{record.wish,jdbcType=VARCHAR},
+      coach = #{record.coach,jdbcType=VARCHAR},
+      know_from = #{record.knowFrom,jdbcType=VARCHAR},
+      is_complete = #{record.isComplete,jdbcType=TINYINT},
+      create_at = #{record.createAt,jdbcType=BIGINT},
+      update_at = #{record.updateAt,jdbcType=BIGINT}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.just.pojo.Student">
+    update student
+    <set>
+      <if test="name != null">
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="qq != null">
+        qq = #{qq,jdbcType=VARCHAR},
+      </if>
+      <if test="types != null">
+        types = #{types,jdbcType=VARCHAR},
+      </if>
+      <if test="startDate != null">
+        start_date = #{startDate,jdbcType=BIGINT},
+      </if>
+      <if test="school != null">
+        school = #{school,jdbcType=VARCHAR},
+      </if>
+      <if test="studentId != null">
+        student_id = #{studentId,jdbcType=VARCHAR},
+      </if>
+      <if test="dailyLink != null">
+        daily_link = #{dailyLink,jdbcType=VARCHAR},
+      </if>
+      <if test="wish != null">
+        wish = #{wish,jdbcType=VARCHAR},
+      </if>
+      <if test="coach != null">
+        coach = #{coach,jdbcType=VARCHAR},
+      </if>
+      <if test="knowFrom != null">
+        know_from = #{knowFrom,jdbcType=VARCHAR},
+      </if>
+      <if test="isComplete != null">
+        is_complete = #{isComplete,jdbcType=TINYINT},
+      </if>
+      <if test="createAt != null">
+        create_at = #{createAt,jdbcType=BIGINT},
+      </if>
+      <if test="updateAt != null">
+        update_at = #{updateAt,jdbcType=BIGINT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.just.pojo.Student">
+    update student
+    set name = #{name,jdbcType=VARCHAR},
+      qq = #{qq,jdbcType=VARCHAR},
+      types = #{types,jdbcType=VARCHAR},
+      start_date = #{startDate,jdbcType=BIGINT},
+      school = #{school,jdbcType=VARCHAR},
+      student_id = #{studentId,jdbcType=VARCHAR},
+      daily_link = #{dailyLink,jdbcType=VARCHAR},
+      wish = #{wish,jdbcType=VARCHAR},
+      coach = #{coach,jdbcType=VARCHAR},
+      know_from = #{knowFrom,jdbcType=VARCHAR},
+      is_complete = #{isComplete,jdbcType=TINYINT},
+      create_at = #{createAt,jdbcType=BIGINT},
+      update_at = #{updateAt,jdbcType=BIGINT}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

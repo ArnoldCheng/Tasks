@@ -1,0 +1,294 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.just.mapper.OccupationMapper">
+  <resultMap id="BaseResultMap" type="com.just.pojo.Occupation">
+    <result column="id" jdbcType="INTEGER" property="id" />
+    <result column="classification" jdbcType="VARCHAR" property="classification" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="description" jdbcType="VARCHAR" property="description" />
+    <result column="threshold" jdbcType="VARCHAR" property="threshold" />
+    <result column="difficulty" jdbcType="VARCHAR" property="difficulty" />
+    <result column="cycle" jdbcType="VARCHAR" property="cycle" />
+    <result column="scarcity" jdbcType="INTEGER" property="scarcity" />
+    <result column="salary1" jdbcType="VARCHAR" property="salary1" />
+    <result column="salary2" jdbcType="VARCHAR" property="salary2" />
+    <result column="salary3" jdbcType="VARCHAR" property="salary3" />
+    <result column="learner" jdbcType="INTEGER" property="learner" />
+    <result column="foundation" jdbcType="VARCHAR" property="foundation" />
+    <result column="flip_title" jdbcType="VARCHAR" property="flipTitle" />
+    <result column="flip_text" jdbcType="VARCHAR" property="flipText" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    id, classification, name, description, threshold, difficulty, cycle, scarcity, salary1, 
+    salary2, salary3, learner, foundation, flip_title, flip_text
+  </sql>
+  <select id="selectByExample" parameterType="com.just.pojo.OccupationExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from occupation
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <delete id="deleteByExample" parameterType="com.just.pojo.OccupationExample">
+    delete from occupation
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.just.pojo.Occupation">
+    insert into occupation (id, classification, name, 
+      description, threshold, difficulty, 
+      cycle, scarcity, salary1, 
+      salary2, salary3, learner, 
+      foundation, flip_title, flip_text
+      )
+    values (#{id,jdbcType=INTEGER}, #{classification,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, 
+      #{description,jdbcType=VARCHAR}, #{threshold,jdbcType=VARCHAR}, #{difficulty,jdbcType=VARCHAR}, 
+      #{cycle,jdbcType=VARCHAR}, #{scarcity,jdbcType=INTEGER}, #{salary1,jdbcType=VARCHAR}, 
+      #{salary2,jdbcType=VARCHAR}, #{salary3,jdbcType=VARCHAR}, #{learner,jdbcType=INTEGER}, 
+      #{foundation,jdbcType=VARCHAR}, #{flipTitle,jdbcType=VARCHAR}, #{flipText,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.just.pojo.Occupation">
+    insert into occupation
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="classification != null">
+        classification,
+      </if>
+      <if test="name != null">
+        name,
+      </if>
+      <if test="description != null">
+        description,
+      </if>
+      <if test="threshold != null">
+        threshold,
+      </if>
+      <if test="difficulty != null">
+        difficulty,
+      </if>
+      <if test="cycle != null">
+        cycle,
+      </if>
+      <if test="scarcity != null">
+        scarcity,
+      </if>
+      <if test="salary1 != null">
+        salary1,
+      </if>
+      <if test="salary2 != null">
+        salary2,
+      </if>
+      <if test="salary3 != null">
+        salary3,
+      </if>
+      <if test="learner != null">
+        learner,
+      </if>
+      <if test="foundation != null">
+        foundation,
+      </if>
+      <if test="flipTitle != null">
+        flip_title,
+      </if>
+      <if test="flipText != null">
+        flip_text,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="classification != null">
+        #{classification,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="description != null">
+        #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="threshold != null">
+        #{threshold,jdbcType=VARCHAR},
+      </if>
+      <if test="difficulty != null">
+        #{difficulty,jdbcType=VARCHAR},
+      </if>
+      <if test="cycle != null">
+        #{cycle,jdbcType=VARCHAR},
+      </if>
+      <if test="scarcity != null">
+        #{scarcity,jdbcType=INTEGER},
+      </if>
+      <if test="salary1 != null">
+        #{salary1,jdbcType=VARCHAR},
+      </if>
+      <if test="salary2 != null">
+        #{salary2,jdbcType=VARCHAR},
+      </if>
+      <if test="salary3 != null">
+        #{salary3,jdbcType=VARCHAR},
+      </if>
+      <if test="learner != null">
+        #{learner,jdbcType=INTEGER},
+      </if>
+      <if test="foundation != null">
+        #{foundation,jdbcType=VARCHAR},
+      </if>
+      <if test="flipTitle != null">
+        #{flipTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="flipText != null">
+        #{flipText,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.just.pojo.OccupationExample" resultType="java.lang.Integer">
+    select count(*) from occupation
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update occupation
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.classification != null">
+        classification = #{record.classification,jdbcType=VARCHAR},
+      </if>
+      <if test="record.name != null">
+        name = #{record.name,jdbcType=VARCHAR},
+      </if>
+      <if test="record.description != null">
+        description = #{record.description,jdbcType=VARCHAR},
+      </if>
+      <if test="record.threshold != null">
+        threshold = #{record.threshold,jdbcType=VARCHAR},
+      </if>
+      <if test="record.difficulty != null">
+        difficulty = #{record.difficulty,jdbcType=VARCHAR},
+      </if>
+      <if test="record.cycle != null">
+        cycle = #{record.cycle,jdbcType=VARCHAR},
+      </if>
+      <if test="record.scarcity != null">
+        scarcity = #{record.scarcity,jdbcType=INTEGER},
+      </if>
+      <if test="record.salary1 != null">
+        salary1 = #{record.salary1,jdbcType=VARCHAR},
+      </if>
+      <if test="record.salary2 != null">
+        salary2 = #{record.salary2,jdbcType=VARCHAR},
+      </if>
+      <if test="record.salary3 != null">
+        salary3 = #{record.salary3,jdbcType=VARCHAR},
+      </if>
+      <if test="record.learner != null">
+        learner = #{record.learner,jdbcType=INTEGER},
+      </if>
+      <if test="record.foundation != null">
+        foundation = #{record.foundation,jdbcType=VARCHAR},
+      </if>
+      <if test="record.flipTitle != null">
+        flip_title = #{record.flipTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="record.flipText != null">
+        flip_text = #{record.flipText,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update occupation
+    set id = #{record.id,jdbcType=INTEGER},
+      classification = #{record.classification,jdbcType=VARCHAR},
+      name = #{record.name,jdbcType=VARCHAR},
+      description = #{record.description,jdbcType=VARCHAR},
+      threshold = #{record.threshold,jdbcType=VARCHAR},
+      difficulty = #{record.difficulty,jdbcType=VARCHAR},
+      cycle = #{record.cycle,jdbcType=VARCHAR},
+      scarcity = #{record.scarcity,jdbcType=INTEGER},
+      salary1 = #{record.salary1,jdbcType=VARCHAR},
+      salary2 = #{record.salary2,jdbcType=VARCHAR},
+      salary3 = #{record.salary3,jdbcType=VARCHAR},
+      learner = #{record.learner,jdbcType=INTEGER},
+      foundation = #{record.foundation,jdbcType=VARCHAR},
+      flip_title = #{record.flipTitle,jdbcType=VARCHAR},
+      flip_text = #{record.flipText,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+</mapper>
